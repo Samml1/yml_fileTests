@@ -4,8 +4,9 @@ entrance:
     roomName: 'Dungeon Entrance'
     description: 'The Entrance to the dungeon'
 hallway:
-  room: 'Dungeon hallway'
-  description: 'A dark wet hallway that smells of mildew'
+  room:
+    roomName: 'Dungeon hallway'
+    description: 'A dark wet hallway that smells of mildew'
 treasureRoom:
   room:
     roomName: 'Treasure Room'
