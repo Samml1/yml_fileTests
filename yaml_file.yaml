@@ -1,0 +1,20 @@
+--- &id002 !!python/object:classStructure.room
+description: The Entrance to the dungeon
+enemies: {}
+enemyRoom: false
+exits:
+  north: &id001 !!python/object:classStructure.room
+    description: A dark wet hallway that smells of mildew
+    enemies: {}
+    enemyRoom: false
+    exits:
+      east: !!python/object:classStructure.room
+        description: A room full of a horde of treasure
+        enemies: {}
+        enemyRoom: true
+        exits:
+          west: *id001
+        roomName: Treasure Room
+      south: *id002
+    roomName: Dungeon hallway
+roomName: Dungeon Entrance
