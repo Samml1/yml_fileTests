@@ -3,22 +3,23 @@ entrance:
   room:
     roomName: 'Dungeon Entrance'
     description: 'The Entrance to the dungeon'
+    enemyRoom : False
+    exits:
+      north: hallway
+
 hallway:
   room:
     roomName: 'Dungeon hallway'
     description: 'A dark wet hallway that smells of mildew'
+    enemyRoom : False
+    exits:
+      south: entrance
+      east: treasureRoom
+
 treasureRoom:
   room:
     roomName: 'Treasure Room'
     description: 'A room full of a horde of treasure'
-
-# Create exits
-entrance.exits["north"] : hallway
-hallway.exits:["south"] : entrance
-hallway.exits["east"] : treasureRoom
-treasureRoom.exits["west"] : hallway
-
-# Create enemy rooms
-entrance.enemyRoom : False
-hallway.enemyRoom : False
-treasureRoom.enemyRoom : True
+    enemyRoom: True
+    exits:
+      west: hallway
