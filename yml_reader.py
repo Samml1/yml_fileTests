@@ -2,6 +2,7 @@ import yaml
 import io
 from yaml.loader import SafeLoader
 from classStructure import room
+from functools import reduce
 roomList = []
 
 def yamlReader(fileName):
@@ -11,11 +12,21 @@ def yamlReader(fileName):
 
     return data
 
+def createExits(roomlist):
+    for i in range(0, len(roomList)):
+        print(roomList[i].name)
+        for j in range(0,len(roomList)):
+            if roomList[j].name in roomList[i].exits.values():
+                print(roomList[i].exits.values(), roomList[j].name)
+                print("hit")
+
+
+
 def createRoom(roomId, roomName, description, enemyRoom, exits):
     # from provided yaml data create object room
     roomId = room(roomId, roomName, description)
-    roomId.exits = exits
     roomId.enemyRoom = enemyRoom
+    roomId.exits = exits
 
     # create list of rooms to be called on later
     roomList.append(roomId)
@@ -32,7 +43,10 @@ def defineDungeon(data):
         description = data[i].get('description')
         enemyRoom = bool(data[i].get('enemyRoom'))
         exits = data[i].get('exits', {})
+        exits = reduce(lambda union, next_dict: union.update(next_dict) or union, exits, {})
 
+        print(room)
+        print(type(exits))
         #pass each yaml data entry to function
         createRoom(room, roomName, description, enemyRoom, exits)
 
@@ -42,5 +56,7 @@ def munchYaml():
     fileName=input("Which file to read?\n")
     data = yamlReader(fileName)
     defineDungeon(data)
+
+    createExits(roomList)
 
     return roomList
