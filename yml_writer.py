@@ -5,22 +5,10 @@ from yml_reader import munchYaml
 
 roomList = munchYaml()
 
-print(roomList)
-
-'''# Write YAML file
-def tokeniseClass(objectList):
-    for i in range(len(objectList)):
-        print(roomList[i].id)
-        print(roomList[i].roomName)
-        print(roomList[i].description)
-        exitid=str(roomList[i].exits.values()).lstrip("dict_values([").rstrip("])")
-        print(exitid)
-        print(str(roomList[i].enemyRoom) + "\n")
+for i in range(0, len(roomList)):
+    print(roomList[i])
 
 
-tokeniseClass(roomList)
-
-
-with io.open('rooms.yaml', 'w', encoding='utf8') as outfile:
-    yaml.dump(roomList[0], outfile, explicit_start=True, default_flow_style=False, allow_unicode=True)
-'''
+with io.open('rooms.yml', 'w', encoding='utf8') as outfile:
+    for i in range(0, len(roomList)):
+        yaml.dump(roomList[i], outfile, sort_keys=False, explicit_start=True, default_flow_style=False, allow_unicode=True)
