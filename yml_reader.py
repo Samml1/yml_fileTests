@@ -4,9 +4,9 @@ from yaml.loader import SafeLoader
 from classStructure import room
 roomList = []
 
-def yamlReader():
+def yamlReader(fileName):
     # open yaml file for loading
-    with open('example.yml', 'r') as f:
+    with open(fileName + '.yml', 'r') as f:
         data = list(yaml.load_all(f, Loader=SafeLoader))
 
     return data
@@ -39,7 +39,8 @@ def defineDungeon(data):
     return room, roomName, description, enemyRoom, exits
 
 def munchYaml():
-    data = yamlReader()
+    fileName=input("Which file to read?\n")
+    data = yamlReader(fileName)
     defineDungeon(data)
 
     return roomList
