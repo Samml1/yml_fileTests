@@ -1,25 +1,23 @@
 # Create the dungeon rooms
-entrance:
-  room:
-    roomName: 'Dungeon Entrance'
-    description: 'The Entrance to the dungeon'
-    enemyRoom : False
-    exits:
-      north: hallway
-
-hallway:
-  room:
-    roomName: 'Dungeon hallway'
-    description: 'A dark wet hallway that smells of mildew'
-    enemyRoom : False
-    exits:
-      south: entrance
-      east: treasureRoom
-
-treasureRoom:
-  room:
-    roomName: 'Treasure Room'
-    description: 'A room full of a horde of treasure'
-    enemyRoom: True
-    exits:
-      west: hallway
+---
+room: entrance
+roomName: 'Dungeon Entrance'
+description: 'The Entrance to the dungeon'
+enemyRoom: 'False'
+exits:
+  - north: 'hallway'
+---
+room: hallway
+roomName: 'dungeon hallway'
+description: 'a hallway'
+enemyRoom: 'False'
+exits:
+  - east: 'treasureRoom'
+  - south: 'entrance'
+---
+room: treasureRoom
+roomName: 'Treasure Room'
+description: 'A room with some treasure'
+enemyRoom: 'True'
+exits:
+  - west: 'hallway'
