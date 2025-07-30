@@ -1,28 +1,13 @@
 import yaml
 import io
 from classStructure import player, room
+from yml_reader import munchYaml
 
-user1 = player("TestName", "entrance")
+roomList = munchYaml()
 
-# Create the dungeon rooms
-entrance = room('entrance','Dungeon Entrance', 'The Entrance to the dungeon')
-hallway = room('hallway','Dungeon hallway', 'A dark wet hallway that smells of mildew')
-treasureRoom = room('treasureRoom','Treasure Room', 'A room full of a horde of treasure')
+print(roomList)
 
-# Create exits
-entrance.exits["north"] = hallway
-hallway.exits["south"] = entrance
-hallway.exits["east"] = treasureRoom
-treasureRoom.exits["west"] = hallway
-
-# Create enemy rooms
-entrance.enemyRoom = False
-hallway.enemyRoom = False
-treasureRoom.enemyRoom = True
-
-roomList = [entrance, hallway, treasureRoom]
-
-# strip class data to present for yaml file
+'''# Write YAML file
 def tokeniseClass(objectList):
     for i in range(len(objectList)):
         print(roomList[i].id)
@@ -38,3 +23,4 @@ tokeniseClass(roomList)
 
 with io.open('rooms.yaml', 'w', encoding='utf8') as outfile:
     yaml.dump(roomList[0], outfile, explicit_start=True, default_flow_style=False, allow_unicode=True)
+'''
