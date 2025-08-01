@@ -17,8 +17,12 @@ def createExits(roomlist):
         print(roomList[i].name)
         for j in range(0,len(roomList)):
             if roomList[j].name in roomList[i].exits.values():
-                print(roomList[i].exits.values(), roomList[j].name)
-                print("hit")
+                for x in roomList[i].exits:
+                    if roomList[i].exits[x] == roomList[j].name:
+                        roomList[i].exits[x] = roomList[j]
+
+    for y in range(0, len(roomList)):
+        print(roomList[y].name, roomList[y].exits)
 
 
 
@@ -45,8 +49,6 @@ def defineDungeon(data):
         exits = data[i].get('exits', {})
         exits = reduce(lambda union, next_dict: union.update(next_dict) or union, exits, {})
 
-        print(room)
-        print(type(exits))
         #pass each yaml data entry to function
         createRoom(room, roomName, description, enemyRoom, exits)
 
@@ -56,7 +58,7 @@ def munchYaml():
     fileName=input("Which file to read?\n")
     data = yamlReader(fileName)
     defineDungeon(data)
+    createExits(data)
 
-    createExits(roomList)
-
+    print(roomList)
     return roomList
